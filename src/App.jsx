@@ -12,6 +12,7 @@ const App = () => {
     return savedUser ? JSON.parse(savedUser) : null
   })
 
+  const [tasks, setTasks] = useState([]);
   const hasUser = Boolean(user)
 
   useEffect(() => {
@@ -29,8 +30,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={hasUser ? <Navigate to="/tasks" replace /> : <LoginPage onSubmit={setUser} />} />
-            <Route path="/tasks" element={hasUser ? <MainPage name={user} /> : <Navigate to="/" replace />} />
-            <Route path="/add-task" element={<AddTask />} />
+            <Route path="/tasks" element={hasUser ? <MainPage name={user} tasks={tasks} /> : <Navigate to="/" replace />} />
+            <Route path="/add-task" element={<AddTask tasks={tasks} setTasks={setTasks} />} />
           </Routes>
         </BrowserRouter>
       }

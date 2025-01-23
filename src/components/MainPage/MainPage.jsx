@@ -1,15 +1,25 @@
 import Header from "../Header/Header"
 import Main from "../Main/Main"
-import TaskCards from "../TaskCards/TaskCards"
+import TaskCard from "../TaskCard/TaskCard"
 import TasksNavBar from "../TasksNavBar/TasksNavBar"
 
-const MainPage = ({ name }) => {
+const MainPage = ({ name, tasks }) => {
     return (
         <>
             <Header />
-            <Main name={name}/>
+            <Main name={name} />
             <TasksNavBar />
-            <TaskCards />
+            <div className="flex justify-start overflow-x-auto sm:justify-center">
+                {tasks && tasks.length > 0 ? (
+                    tasks.map((task, index) => (
+                        <TaskCard key={index} task={task} />
+                    ))
+                ) : (
+                    <div className="flex justify-center items-center w-full font-poppins mt-20 text-2xl">
+                    <p>Nenhuma tarefa ativa</p>
+                    </div>
+                )}
+            </div>
         </>
     )
 }
