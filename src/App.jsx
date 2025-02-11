@@ -27,7 +27,7 @@ const App = () => {
     <div>
 
       {
-        <BrowserRouter>
+        <BrowserRouter basename="/Taskiando">
           <Routes>
             <Route path="/" element={hasUser ? <Navigate to="/tasks" replace /> : <LoginPage onSubmit={setUser} />} />
             <Route path="/tasks" element={hasUser ? <MainPage name={user} tasks={tasks} /> : <Navigate to="/" replace />} />
