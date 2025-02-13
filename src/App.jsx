@@ -23,6 +23,10 @@ const App = () => {
     }
   }, [user]);
 
+  const handleLogout = () => {
+    setUser(null); 
+  };
+
   return (
     <div>
 
@@ -30,7 +34,7 @@ const App = () => {
         <BrowserRouter basename="/Taskiando">
           <Routes>
             <Route path="/" element={hasUser ? <Navigate to="/tasks" replace /> : <LoginPage onSubmit={setUser} />} />
-            <Route path="/tasks" element={hasUser ? <MainPage name={user} tasks={tasks} /> : <Navigate to="/" replace />} />
+            <Route path="/tasks" element={hasUser ? <MainPage name={user} tasks={tasks} onLogout={handleLogout}/> : <Navigate to="/" replace />} />
             <Route path="/add-task" element={<AddTask tasks={tasks} setTasks={setTasks} />} />
           </Routes>
         </BrowserRouter>
