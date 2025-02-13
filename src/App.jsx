@@ -31,7 +31,7 @@ const App = () => {
     <div>
 
       {
-        <BrowserRouter basename="/Taskiando">
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={hasUser ? <Navigate to="/tasks" replace /> : <LoginPage onSubmit={setUser} />} />
             <Route path="/tasks" element={hasUser ? <MainPage name={user} tasks={tasks} onLogout={handleLogout}/> : <Navigate to="/" replace />} />
